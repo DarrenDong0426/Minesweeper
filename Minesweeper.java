@@ -77,9 +77,3 @@ public class Minesweeper {
   }  
     
 }
-
-
-
-public class Button{
-  
-}
