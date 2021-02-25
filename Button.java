@@ -7,15 +7,25 @@ import javax.swing.JFrame;
 
 
 
-public class Button extends JFrame
-			implements MouseListener{
+public class Button extends JFrame{
 
 	private JButton button;
 	private boolean isMine;
 		
 	public Button(){
 		button = new JButton("Yes");
-		button.addMouseListener(this);
+		button.addMouseListener(new MouseAdapter(){
+			public void mouseReleased(MouseEvent e) {
+				if (SwingUtilities.isLeftMouseButton(e)){
+			//Change to mine (to be implemented)
+				}
+				else if (SwingUtilities.isRightMouseButton(e)){
+			//Change to Flag (to be implemented)
+				}
+			}
+			
+		});
+		
 		isMine = false;
 	}
 	
