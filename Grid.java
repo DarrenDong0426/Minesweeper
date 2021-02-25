@@ -1,17 +1,23 @@
 import java.util.ArrayList;
 
-public class Grid{
-  
-  private ArrayList<Integer> length;
-  private ArrayList<ArrayList<Integer>> width;
-  private int numberOfMines;
-  
-  public Grid(int l, int w, int m){
-    
-    length = new ArrayList<Integer>(l);
-    width = new ArrayList<ArrayList<Integer>>(w);
-    numberOfMines = m;
-    
-  }
-  
+public class Grid extends Minesweeper{
+	
+	public Grid(){}
+	
+	public Grid(int l, int w, int m) {
+		
+		ArrayList<Button> length = new ArrayList<Button>(l);
+		ArrayList<ArrayList<Button>> width = new ArrayList<ArrayList<Button>>(w);
+		
+		for (int i = 0; i < l; i++){
+			for (int j = 0; j < w; j++){
+				Button button = new Button();
+				getPanel().add((button.getButton()));
+			}				
+		}
+		
+		
+		
+	}
+				
 }
