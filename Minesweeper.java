@@ -30,7 +30,7 @@ public class Minesweeper {
 		frame.pack();
 		frame.setVisible(true);
 		
-		Grid gird = new Grid(length, width, mines);
+		Grid grid = new Grid(length, width, mines);
 		
     
   	}
