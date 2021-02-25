@@ -28,7 +28,9 @@ public class Minesweeper {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Minesweeper");
 		frame.pack();
-		frame.setVisible(true); 
+		frame.setVisible(true);
+		
+		Grid gird = new Grid(length, width, mines);
 		
     
   	}
@@ -75,6 +77,9 @@ public class Minesweeper {
 		}
 	}while (mines < 10 || mines > 30);
   
-  }  
-    
+  }
+	
+  public static JPanel getPanel(){
+	return panel;
+  }
 }
