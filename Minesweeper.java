@@ -21,6 +21,7 @@ public class Minesweeper {
     
 		panel = new JPanel(); 
 		panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
+		panel.setLayout(new GridLayout(length, width, 3, 3));
 		
 		frame = new JFrame();
 		frame.add(panel, BorderLayout.CENTER);
