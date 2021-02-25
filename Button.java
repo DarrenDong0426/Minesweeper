@@ -11,14 +11,24 @@ public class Button extends JFrame
 			implements MouseListener{
 
 	private JButton button;
+	private boolean isMine;
 		
 	public Button(){
 		button = new JButton("Yes");
 		button.addMouseListener(this);
+		isMine = false;
 	}
 	
 	public JButton getButton(){
 		return button;
+	}
+	
+	public void IntoMine(){
+		isMine = true;
+	}
+	
+	public boolean MineCheck(){
+		return isMine; 
 	}
 
 	public void mouseClicked(MouseEvent arg0) {}
