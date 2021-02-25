@@ -27,8 +27,8 @@ public class Grid extends Minesweeper{
 		while (m > 0){
 			int x = (int)(Math.random() * l);
 			int y = (int)(Math.random() * w);
-			if ((((width.get(y)).get(x)).MineCheck()) == false){
-				((width.get(y)).get(x)).IntoMine();
+			if ((((width.get(x)).get(y)).MineCheck()) == false){
+				((width.get(x)).get(y)).IntoMine();
 				m--;
 			}
 		}		
