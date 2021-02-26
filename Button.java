@@ -14,8 +14,8 @@ import javax.swing.SwingUtilities;
 
 
 
-@SuppressWarnings("serial")
-public class Button extends JFrame{
+
+public class Button extends Grid{
 
 	private JButton button;
 	private boolean isMine;
@@ -51,15 +51,20 @@ public class Button extends JFrame{
 				if (n ==  JOptionPane.QUESTION_MESSAGE) {
 					System.exit(0);
 				}*/
-				/*		int n = JOptionPane.showConfirmDialog(null, "Press something");
-						if(n == JOptionPane.YES_NO_OPTION) {
-							JOptionPane.showMessageDialog(null, "Hey");
-						} */
+						int n = JOptionPane.showConfirmDialog(null, "You lost. Would you like to play again?");
+						if(n == JOptionPane.YES_OPTION) {
+							frame.setVisible(false);
+							gameRestart();
+						} 
+						if(n == JOptionPane.NO_OPTION) {
+							System.exit(0);
+						}
 					}
 						if (MineCheck() == false){
 							button.setText("" + number);
 							button.setFont(new Font("Monospace", Font.BOLD, button.getHeight()/2));
 							button.setEnabled(false);
+							
 						}
 					}
 				}
@@ -68,6 +73,8 @@ public class Button extends JFrame{
 						if (button.getIcon() == null){
 							flagIcon = new ImageIcon(new ImageIcon("Flag.png").getImage().getScaledInstance(button.getWidth(), button.getHeight(), Image.SCALE_DEFAULT));
 							button.setIcon(flagIcon);
+							flags--;
+							label.setText("Flags Remaining: " + flags);
 						}
 						else if (button.getIcon() == flagIcon){
 							button.setIcon(null);

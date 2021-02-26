@@ -17,15 +17,17 @@ public class Minesweeper {
   private static int width;
   private static int mines;
   private static JPanel panel;
-  private static JFrame frame; 
-  private static JLabel label;
+  public static JFrame frame; 
+  public static JLabel label;
   private static GridBagConstraints gbc;
+  public static int flags;
 
 	public static void main(String[] args){
 		
 	  getLength();	
 	  getWidth();
 	  getMines();
+	  
 	 // gbc = new GridBagConstraints();
 	  panel = new JPanel(); 
 	  panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
@@ -36,12 +38,15 @@ public class Minesweeper {
 	panel.setBackground(Color.BLUE);
 	 
 	 
-		
 	  frame.add(panel, BorderLayout.CENTER);
 	  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	  frame.setTitle("Minesweeper");
 	  frame.setVisible(true); 
-	  frame.pack();
+	  //frame.pack();
+	  
+	  label = new JLabel();
+	  label.setText("Flags Remaining: " + flags);
+	  panel.add(label, BorderLayout.SOUTH);
 	 
 	 @SuppressWarnings("unused")
 	  Grid grid = new Grid(length, width, mines);
@@ -86,6 +91,7 @@ public class Minesweeper {
     do{
        try{
           mines = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter the number of mines between 10 to 30", "Number of Mines", JOptionPane.INFORMATION_MESSAGE));
+          flags = mines;
           if (mines < 10 || mines > 30)
             JOptionPane.showMessageDialog(frame, "Number of mines must be a number between 10 and 30");
         }catch(NumberFormatException e){	
@@ -101,5 +107,9 @@ public class Minesweeper {
   }
    public static GridBagConstraints getGBC() {
 	   return gbc;
+   }
+   
+   public void gameRestart() {
+	   main(null);
    }
 }
