@@ -20,6 +20,8 @@ public class Button extends JFrame{
 	private JButton button;
 	private boolean isMine;
 	public int number; 
+	private ImageIcon mineIcon;
+	private ImageIcon flagIcon; 
 		
 	public Button(){
 		
@@ -32,8 +34,8 @@ public class Button extends JFrame{
 			public void mouseReleased(MouseEvent e) {
 				if (SwingUtilities.isLeftMouseButton(e)){
 					if (MineCheck() == true){
-						ImageIcon imageIcon = new ImageIcon(new ImageIcon("Mine.png").getImage().getScaledInstance(button.getWidth(), button.getHeight(), Image.SCALE_DEFAULT));
-						button.setIcon(imageIcon);
+						mineIcon = new ImageIcon(new ImageIcon("Mine.png").getImage().getScaledInstance(button.getWidth(), button.getHeight(), Image.SCALE_DEFAULT));
+						button.setIcon(mineIcon);
 						/*Object[] options = {"Yes",
 			                    "No",
 						};
@@ -48,10 +50,10 @@ public class Button extends JFrame{
 				if (n ==  JOptionPane.QUESTION_MESSAGE) {
 					System.exit(0);
 				}*/
-						int n = JOptionPane.showConfirmDialog(null, "Press something");
+				/*		int n = JOptionPane.showConfirmDialog(null, "Press something");
 						if(n == JOptionPane.YES_NO_OPTION) {
 							JOptionPane.showMessageDialog(null, "Hey");
-						}
+						} */
 				}
 					if (MineCheck() == false){
 						button.setText("" + number);
@@ -59,8 +61,13 @@ public class Button extends JFrame{
 					}
 				}
 				else if (SwingUtilities.isRightMouseButton(e)){
-					ImageIcon imageIcon = new ImageIcon(new ImageIcon("Flag.png").getImage().getScaledInstance(button.getWidth(), button.getHeight(), Image.SCALE_DEFAULT));
-					button.setIcon(imageIcon);
+					if (button.getIcon() == null){
+						flagIcon = new ImageIcon(new ImageIcon("Flag.png").getImage().getScaledInstance(button.getWidth(), button.getHeight(), Image.SCALE_DEFAULT));
+						button.setIcon(flagIcon);
+					}
+					else if (button.getIcon() == flagIcon){
+						button.setIcon(null);
+					}
 				}
 			}
 			
