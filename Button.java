@@ -30,8 +30,7 @@ public class Button extends JFrame{
 			public void mouseReleased(MouseEvent e) {
 				if (SwingUtilities.isLeftMouseButton(e)){
 					if (MineCheck() == true){
-						ImageIcon mine = new ImageIcon("Mine.png");
-						button = new JButton(mine);
+						button.setIcon(new ImageIcon("Mine.png"));
 					}
 					if (MineCheck() == false){
 						button.setText("" + number);
@@ -39,8 +38,7 @@ public class Button extends JFrame{
 					}
 				}
 				else if (SwingUtilities.isRightMouseButton(e)){
-					ImageIcon flag = new ImageIcon("Flag_img.png");
-					button = new JButton(flag);
+					button.setIcon(new ImageIcon("Flag.png"));
 				}
 			}
 			
