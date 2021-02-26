@@ -33,9 +33,10 @@ public class Button extends JFrame{
 			
 			public void mouseReleased(MouseEvent e) {
 				if (SwingUtilities.isLeftMouseButton(e)){
-					if (MineCheck() == true){
-						mineIcon = new ImageIcon(new ImageIcon("Mine.png").getImage().getScaledInstance(button.getWidth(), button.getHeight(), Image.SCALE_DEFAULT));
-						button.setIcon(mineIcon);
+					if (button.getIcon() == null){
+						if (MineCheck() == true){
+							mineIcon = new ImageIcon(new ImageIcon("Mine.png").getImage().getScaledInstance(button.getWidth(), button.getHeight(), Image.SCALE_DEFAULT));
+							button.setIcon(mineIcon);
 						/*Object[] options = {"Yes",
 			                    "No",
 						};
@@ -54,19 +55,23 @@ public class Button extends JFrame{
 						if(n == JOptionPane.YES_NO_OPTION) {
 							JOptionPane.showMessageDialog(null, "Hey");
 						} */
-				}
-					if (MineCheck() == false){
-						button.setText("" + number);
-						button.setFont(new Font("Monospace", Font.BOLD, button.getHeight()/2));
+					}
+						if (MineCheck() == false){
+							button.setText("" + number);
+							button.setFont(new Font("Monospace", Font.BOLD, button.getHeight()/2));
+							button.setEnabled(false);
+						}
 					}
 				}
 				else if (SwingUtilities.isRightMouseButton(e)){
-					if (button.getIcon() == null){
-						flagIcon = new ImageIcon(new ImageIcon("Flag.png").getImage().getScaledInstance(button.getWidth(), button.getHeight(), Image.SCALE_DEFAULT));
-						button.setIcon(flagIcon);
-					}
-					else if (button.getIcon() == flagIcon){
-						button.setIcon(null);
+					if (button.isEnabled() == true){
+						if (button.getIcon() == null){
+							flagIcon = new ImageIcon(new ImageIcon("Flag.png").getImage().getScaledInstance(button.getWidth(), button.getHeight(), Image.SCALE_DEFAULT));
+							button.setIcon(flagIcon);
+						}
+						else if (button.getIcon() == flagIcon){
+							button.setIcon(null);
+						}
 					}
 				}
 			}
