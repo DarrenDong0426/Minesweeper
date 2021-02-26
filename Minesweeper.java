@@ -1,8 +1,11 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -13,6 +16,8 @@ public class Minesweeper {
   private static int mines;
   private static JPanel panel;
   private static JFrame frame; 
+  private static JLabel label;
+  
 
 	public static void main(String[] args){
 		
@@ -22,16 +27,19 @@ public class Minesweeper {
     
 	  panel = new JPanel(); 
 	  panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
-	  panel.setLayout(new GridLayout(length, width, 3, 3));
-	  
+	  panel.setLayout(new GridLayout(length, width, 0, 0));
+	 
 	  frame = new JFrame();
-	  frame.pack();
+	panel.setBackground(Color.BLUE);
+	 
+	 
+		
 	  frame.add(panel, BorderLayout.CENTER);
 	  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	  frame.setTitle("Minesweeper");
 	  frame.setVisible(true); 
-	  
-	  
+	  frame.pack();
+	 
 	 @SuppressWarnings("unused")
 	  Grid grid = new Grid(length, width, mines);
 	  

@@ -1,6 +1,9 @@
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,6 +22,9 @@ public class Button extends JFrame{
 	public Button(){
 		
 		button = new JButton();
+		button.setBackground(Color.GRAY);
+		button.setForeground(Color.BLUE);
+		button.setBorder(BorderFactory.createBevelBorder(1));
 		button.addMouseListener(new MouseAdapter(){
 			
 			public void mouseReleased(MouseEvent e) {
@@ -29,6 +35,7 @@ public class Button extends JFrame{
 					}
 					if (MineCheck() == false){
 						button.setText("" + number);
+						button.setFont(new Font("Monospace", Font.BOLD, 40));
 					}
 				}
 				else if (SwingUtilities.isRightMouseButton(e)){
