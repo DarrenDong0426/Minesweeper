@@ -24,7 +24,6 @@ public class Button extends JFrame{
 			public void mouseReleased(MouseEvent e) {
 				if (SwingUtilities.isLeftMouseButton(e)){
 					if (MineCheck() == true){
-						button.setText("Mine");
 						ImageIcon mine = new ImageIcon("Mine.png");
 						button = new JButton(mine);
 					}
