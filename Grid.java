@@ -3,8 +3,6 @@ import java.util.ArrayList;
 
 public class Grid extends Minesweeper{
 	
-	
-	
 	ArrayList<Button> length;
 	ArrayList<ArrayList<Button>> width;
 	
@@ -25,7 +23,7 @@ public class Grid extends Minesweeper{
 		}
 		
 		SetMines(l, w, m);
-		SetNumbers(l, w);
+		setNumbers(l, w);
 	}
 		
 	public void SetMines(int l, int w, int m){
@@ -39,7 +37,7 @@ public class Grid extends Minesweeper{
 		}		
 	}
 	
-	public void SetNumbers(int l, int w){
+	public void setNumbers(int l, int w){
 		for(int i = 0; i < l; i++){
 			for (int j = 0; j < w; j++){
 				int nums = 0; 
