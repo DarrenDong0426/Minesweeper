@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -30,15 +31,17 @@ public class Button extends JFrame{
 			public void mouseReleased(MouseEvent e) {
 				if (SwingUtilities.isLeftMouseButton(e)){
 					if (MineCheck() == true){
-						button.setIcon(new ImageIcon("Mine.png"));
+						ImageIcon imageIcon = new ImageIcon(new ImageIcon("Mine.png").getImage().getScaledInstance(button.getWidth(), button.getHeight(), Image.SCALE_DEFAULT));
+						button.setIcon(imageIcon);
 					}
 					if (MineCheck() == false){
 						button.setText("" + number);
-						button.setFont(new Font("Monospace", Font.BOLD, 40));
+						button.setFont(new Font("Monospace", Font.BOLD, button.getHeight()/2));
 					}
 				}
 				else if (SwingUtilities.isRightMouseButton(e)){
-					button.setIcon(new ImageIcon("Flag.png"));
+					ImageIcon imageIcon = new ImageIcon(new ImageIcon("Flag.png").getImage().getScaledInstance(button.getWidth(), button.getHeight(), Image.SCALE_DEFAULT));
+					button.setIcon(imageIcon);
 				}
 			}
 			
