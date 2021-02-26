@@ -1,6 +1,8 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
@@ -17,17 +19,18 @@ public class Minesweeper {
   private static JPanel panel;
   private static JFrame frame; 
   private static JLabel label;
-  
+  private static GridBagConstraints gbc;
 
 	public static void main(String[] args){
 		
 	  getLength();	
 	  getWidth();
 	  getMines();
-    
+	 // gbc = new GridBagConstraints();
 	  panel = new JPanel(); 
 	  panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
 	  panel.setLayout(new GridLayout(length, width, 0, 0));
+	 // panel.setLayout(new GridBagLayout());
 	 
 	  frame = new JFrame();
 	panel.setBackground(Color.BLUE);
@@ -96,5 +99,7 @@ public class Minesweeper {
   public static JPanel getPanel(){
 	  return panel; 
   }
-    
+   public static GridBagConstraints getGBC() {
+	   return gbc;
+   }
 }

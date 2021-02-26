@@ -8,6 +8,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 
@@ -33,7 +34,25 @@ public class Button extends JFrame{
 					if (MineCheck() == true){
 						ImageIcon imageIcon = new ImageIcon(new ImageIcon("Mine.png").getImage().getScaledInstance(button.getWidth(), button.getHeight(), Image.SCALE_DEFAULT));
 						button.setIcon(imageIcon);
-					}
+						/*Object[] options = {"Yes",
+			                    "No",
+						};
+			int n = JOptionPane.showOptionDialog(null,
+			    "You are trash. Do you want to replay the game?",
+			    "Game Over!",
+			    JOptionPane.YES_NO_CANCEL_OPTION,
+			    JOptionPane.QUESTION_MESSAGE,
+			    null,
+			    options,
+			    options[1]);
+				if (n ==  JOptionPane.QUESTION_MESSAGE) {
+					System.exit(0);
+				}*/
+						int n = JOptionPane.showConfirmDialog(null, "Press something");
+						if(n == JOptionPane.YES_NO_OPTION) {
+							JOptionPane.showMessageDialog(null, "Hey");
+						}
+				}
 					if (MineCheck() == false){
 						button.setText("" + number);
 						button.setFont(new Font("Monospace", Font.BOLD, button.getHeight()/2));

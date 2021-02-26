@@ -16,6 +16,9 @@ public class Grid extends Minesweeper{
 			width.add(length);
 			for (int j = 0; j < w; j++){
 				Button button = new Button();
+				//getGBC().gridx = i;
+				//getGBC().gridy = j;
+				
 				getPanel().add((button.getButton()));
 				(width.get(i)).add(button);
 			}				
