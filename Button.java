@@ -22,7 +22,7 @@ public class Button extends Grid{
 	public int number; 
 	private ImageIcon mineIcon;
 	private ImageIcon flagIcon; 
-	private int nonminecount = 0;
+	public int nonminecount = 0;
 		
 	public Button(){
 		
@@ -59,10 +59,10 @@ public class Button extends Grid{
 							button.setFont(new Font("Monospace", Font.BOLD, button.getHeight()/2));
 							button.setBackground(new Color(7, 66, 115));
 							button.setEnabled(false);	
-							nonminecount--;
+							//nonminecount--;
 						}
 						
-						if(nonminecount == getGridLength()*getGridWidth() - getMine()){
+						if(win() == getGridLength()*getGridWidth() - getMine()){
 							System.exit(0);
 						}
 					} 

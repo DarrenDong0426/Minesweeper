@@ -71,8 +71,7 @@ public class Minesweeper implements ActionListener{
 	 
 	  frame = new JFrame();
 	  minePanel.setBackground(new Color(27, 11, 110));
-	  minePanel.setVisible(true);
-	 
+	
 	  //frame.setExtendedState(JFrame.NORMAL); 
 	  frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 	 

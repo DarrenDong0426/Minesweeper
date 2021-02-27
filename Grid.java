@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Grid extends Minesweeper{
-	
+	public int nonminecount = 0;
 	ArrayList<Button> length;
 	ArrayList<ArrayList<Button>> width;
 	
@@ -84,5 +84,16 @@ public class Grid extends Minesweeper{
 		if (i < 0 || j < 0 || i > width.size() - 1|| j > length.size() - 1)
 			return false;
 		return true;
+	}
+	
+	public int win() {
+		for (int i = 0; i < width.size(); i++){
+		      for (int j = 0; j < length.size();j++){
+		    	  if(width.get(i).get(j).getButton().getModel().isPressed() && width.get(i).get(j).MineCheck() == false) {
+		    		  nonminecount++;
+		    	  }
+		      }
+		    }
+		return nonminecount;
 	}
 }
