@@ -59,10 +59,10 @@ public class Button extends Grid{
 							button.setFont(new Font("Monospace", Font.BOLD, button.getHeight()/2));
 							button.setBackground(new Color(7, 66, 115));
 							button.setEnabled(false);	
-							//nonminecount--;
+							nonminecount++;
 						}
 						
-						if(win() == getGridLength()*getGridWidth() - getMine()){
+						if(nonminecount == getGridLength()*getGridWidth() - getMine()){
 							System.exit(0);
 						}
 					} 

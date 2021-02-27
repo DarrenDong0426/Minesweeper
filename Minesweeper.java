@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
-public class Minesweeper implements ActionListener{
+public class Minesweeper{
   
   private static int length;
   private static int width;
@@ -109,13 +109,13 @@ public class Minesweeper implements ActionListener{
     do{
      try{
         length = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter the length of the grid from 10 to 30", "Length", JOptionPane.INFORMATION_MESSAGE));
-        if (length < 10 || length > 30)
+        if (length < 2 || length > 30)
           JOptionPane.showMessageDialog(frame, "Length must be a number between 10 and 30");
       }catch(NumberFormatException e){	
         JOptionPane.showMessageDialog(frame, "Length must be a number between 10 and 30");
         getLength();
       }
-     }while (length < 10 || length > 30);
+     }while (length < 2 || length > 30);
     
    }
   
@@ -124,13 +124,13 @@ public class Minesweeper implements ActionListener{
     do{
      try{
         width = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter the width of the grid from 10 to 30", "Width", JOptionPane.INFORMATION_MESSAGE));
-        if (width < 10 || width > 30)
+        if (width < 2 || width > 30)
           JOptionPane.showMessageDialog(frame, "Width must be a number between 10 and 30");
       }catch(NumberFormatException e){	
         JOptionPane.showMessageDialog(frame, "Width must be a number between 10 and 30");
         getWidth();
       }
-     }while (width < 10 || width > 30);
+     }while (width < 2 || width > 30);
     
    }
   
@@ -140,13 +140,13 @@ public class Minesweeper implements ActionListener{
        try{
           mines = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter the number of mines between 10 to 30", "Number of Mines", JOptionPane.INFORMATION_MESSAGE));
           flags = mines;
-          if (mines < 10 || mines > 30)
+          if (mines < 2 || mines > 30)
             JOptionPane.showMessageDialog(frame, "Number of mines must be a number between 10 and 30");
         }catch(NumberFormatException e){	
           JOptionPane.showMessageDialog(frame, "Number of mines must be a number between 10 and 30");
           getMines();
         }
-       }while (mines < 10 || mines > 30);
+       }while (mines < 2 || mines > 30);
 
      }  
   
