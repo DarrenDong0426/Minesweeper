@@ -1,18 +1,24 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.Timer;
+import javax.swing.border.EmptyBorder;
 
 public class Minesweeper implements ActionListener{
   
@@ -25,6 +31,8 @@ public class Minesweeper implements ActionListener{
   public static JLabel label;
   public static int flags;
   private static JButton restart;
+  private static ImageIcon restartIcon;
+ 
 
 	public static void main(String[] args){
 		
@@ -32,7 +40,14 @@ public class Minesweeper implements ActionListener{
 	  getWidth();
 	  getMines();
 	  
-	  restart = new JButton("Click here to start a new game.");
+	  restart = new JButton();
+	  restartIcon = new ImageIcon(new ImageIcon("restart.jpg").getImage().getScaledInstance(55, 55, Image.SCALE_DEFAULT));
+		restart.setIcon(restartIcon);
+		restart.setOpaque(false);
+		restart.setFocusPainted(false);
+		restart.setBorderPainted(false);
+		restart.setContentAreaFilled(false);
+		restart.setBorder(BorderFactory.createEmptyBorder(20,300,0,0));
 	  restart.addActionListener(new ActionListener(){
 		  
 		  public void actionPerformed(ActionEvent arg0) {
@@ -42,32 +57,43 @@ public class Minesweeper implements ActionListener{
 		  
 	  }); 
 	  
-	 
+	
+	  
 	  otherPanel = new JPanel();
 	  otherPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
 	  otherPanel.setLayout(new GridLayout(1, 3, 0, 0));
-	  otherPanel.setBackground(Color.BLUE);
+	  otherPanel.setBackground(new Color(27, 11, 110));
 	 		
 	  minePanel = new JPanel(); 
 	  minePanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
 	  minePanel.setLayout(new GridLayout(length, width, 0, 0));
+	  
 	 
 	  frame = new JFrame();
-	  minePanel.setBackground(Color.BLUE);
+	  minePanel.setBackground(new Color(27, 11, 110));
+	  minePanel.setVisible(true);
 	 
+	  //frame.setExtendedState(JFrame.NORMAL); 
+	  frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 	 
 	  frame.add(otherPanel, BorderLayout.NORTH);
 	  frame.add(minePanel, BorderLayout.CENTER);
 	  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	  frame.setTitle("Minesweeper");
-	  frame.setVisible(true); 
+	 
 	  //frame.pack();
 	  
 	  label = new JLabel();
 	  label.setText("Flags Remaining: " + flags);
+	  label.setFont(new Font("Monospace", Font.BOLD, 30));
+	  label.setForeground(Color.WHITE);
+	  label.setBorder(new EmptyBorder(0,20,0,0));
 	  otherPanel.add(label);
 	  otherPanel.add(restart);
+  
 	 
+	  frame.setVisible(true); 
+	  
 	 @SuppressWarnings("unused")
 	  Grid grid = new Grid(length, width, mines);
 	  
@@ -75,6 +101,9 @@ public class Minesweeper implements ActionListener{
 		
     
   }
+	
+	
+	
 
   public static void getLength(){
     
@@ -125,9 +154,17 @@ public class Minesweeper implements ActionListener{
   public static JPanel getPanel(){
 	  return minePanel; 
   }
-   
+  public static int getMine() {
+	   return mines;
+  }
+   public static int getGridWidth() {
+	   return width;
+   }
+   public static int getGridLength() {
+	   return length;
+   }
    public static void gameRestart() {
 	   main(null);
    }
-
+ 
 }

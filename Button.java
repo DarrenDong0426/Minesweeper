@@ -22,6 +22,7 @@ public class Button extends Grid{
 	public int number; 
 	private ImageIcon mineIcon;
 	private ImageIcon flagIcon; 
+	private int nonminecount = 0;
 		
 	public Button(){
 		
@@ -37,36 +38,34 @@ public class Button extends Grid{
 						if (MineCheck() == true){
 							mineIcon = new ImageIcon(new ImageIcon("Mine.png").getImage().getScaledInstance(button.getWidth(), button.getHeight(), Image.SCALE_DEFAULT));
 							button.setIcon(mineIcon);
-						/*Object[] options = {"Yes",
-			                    "No",
-						};
-			int n = JOptionPane.showOptionDialog(null,
-			    "You are trash. Do you want to replay the game?",
-			    "Game Over!",
-			    JOptionPane.YES_NO_CANCEL_OPTION,
-			    JOptionPane.QUESTION_MESSAGE,
-			    null,
-			    options,
-			    options[1]);
-				if (n ==  JOptionPane.QUESTION_MESSAGE) {
-					System.exit(0);
-				}*/
-						int n = JOptionPane.showConfirmDialog(null, "You lost. Would you like to play again?");
-						if(n == JOptionPane.YES_OPTION) {
-							frame.setVisible(false);
-							gameRestart();
-						} 
-						if(n == JOptionPane.NO_OPTION) {
-							System.exit(0);
+							
+							int dialogButton = JOptionPane.showConfirmDialog (null, "You lost! Do you want to play again?","GAME OVER",JOptionPane.YES_NO_OPTION);
+							
+							if(dialogButton == JOptionPane.YES_OPTION) {
+								frame.setVisible(false);
+								gameRestart();
+							}
+							if(dialogButton == JOptionPane.NO_OPTION) {
+								System.exit(0);
+							}
 						}
-					}
+
+							
+						
+				
+						
 						if (MineCheck() == false){
 							button.setText("" + number);
 							button.setFont(new Font("Monospace", Font.BOLD, button.getHeight()/2));
-							button.setEnabled(false);
-							
+							button.setBackground(new Color(7, 66, 115));
+							button.setEnabled(false);	
+							nonminecount--;
 						}
-					}
+						
+						if(nonminecount == getGridLength()*getGridWidth() - getMine()){
+							System.exit(0);
+						}
+					} 
 				}
 				else if (SwingUtilities.isRightMouseButton(e)){
 					if (button.isEnabled() == true){
