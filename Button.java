@@ -70,15 +70,16 @@ public class Button extends Grid{
 				}
 				else if (SwingUtilities.isRightMouseButton(e)){
 					if (button.isEnabled() == true){
-						if (button.getIcon() == null){
+						if (button.getIcon() == null && flags > 0){
 							flagIcon = new ImageIcon(new ImageIcon("Flag.png").getImage().getScaledInstance(button.getWidth(), button.getHeight(), Image.SCALE_DEFAULT));
 							button.setIcon(flagIcon);
 							flags--;
-							label.setText("Flags Remaining: " + flags);
 						}
-						else if (button.getIcon() == flagIcon){
+						else if(button.getIcon() == flagIcon && button.getIcon() != null){
 							button.setIcon(null);
+							flags++;
 						}
+					label.setText("Flags Remaining: " + flags);
 					}
 				}
 			}

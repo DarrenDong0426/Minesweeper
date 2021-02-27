@@ -4,23 +4,27 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class Minesweeper {
+public class Minesweeper implements ActionListener{
   
   private static int length;
   private static int width;
   private static int mines;
-  private static JPanel panel;
+  private static JPanel otherPanel; 
+  private static JPanel minePanel;
   public static JFrame frame; 
   public static JLabel label;
-  private static GridBagConstraints gbc;
   public static int flags;
+  private static JButton restart;
 
 	public static void main(String[] args){
 		
@@ -28,17 +32,32 @@ public class Minesweeper {
 	  getWidth();
 	  getMines();
 	  
-	 // gbc = new GridBagConstraints();
-	  panel = new JPanel(); 
-	  panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
-	  panel.setLayout(new GridLayout(length, width, 0, 0));
-	 // panel.setLayout(new GridBagLayout());
+	  restart = new JButton("Click here to start a new game.");
+	  restart.addActionListener(new ActionListener(){
+		  
+		  public void actionPerformed(ActionEvent arg0) {
+				frame.setVisible(false);
+				gameRestart();
+			}
+		  
+	  }); 
+	  
+	 
+	  otherPanel = new JPanel();
+	  otherPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
+	  otherPanel.setLayout(new GridLayout(1, 3, 0, 0));
+	  otherPanel.setBackground(Color.BLUE);
+	 		
+	  minePanel = new JPanel(); 
+	  minePanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
+	  minePanel.setLayout(new GridLayout(length, width, 0, 0));
 	 
 	  frame = new JFrame();
-	panel.setBackground(Color.BLUE);
+	  minePanel.setBackground(Color.BLUE);
 	 
 	 
-	  frame.add(panel, BorderLayout.CENTER);
+	  frame.add(otherPanel, BorderLayout.NORTH);
+	  frame.add(minePanel, BorderLayout.CENTER);
 	  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	  frame.setTitle("Minesweeper");
 	  frame.setVisible(true); 
@@ -46,7 +65,8 @@ public class Minesweeper {
 	  
 	  label = new JLabel();
 	  label.setText("Flags Remaining: " + flags);
-	  panel.add(label, BorderLayout.SOUTH);
+	  otherPanel.add(label);
+	  otherPanel.add(restart);
 	 
 	 @SuppressWarnings("unused")
 	  Grid grid = new Grid(length, width, mines);
@@ -103,13 +123,11 @@ public class Minesweeper {
      }  
   
   public static JPanel getPanel(){
-	  return panel; 
+	  return minePanel; 
   }
-   public static GridBagConstraints getGBC() {
-	   return gbc;
-   }
    
-   public void gameRestart() {
+   public static void gameRestart() {
 	   main(null);
    }
+
 }
