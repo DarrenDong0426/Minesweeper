@@ -22,7 +22,7 @@ public class Button extends Grid{
 	public int number; 
 	private ImageIcon mineIcon;
 	private ImageIcon flagIcon; 
-	public int nonminecount = 0;
+	//public int nonminecount = 0;
 		
 	public Button(){
 		
@@ -86,6 +86,13 @@ public class Button extends Grid{
 		});
 		isMine = false;
 		number = 0;
+		
+		if(isRevealed() == true) {
+			System.out.print("you are fat");
+		}
+		else {
+			System.out.print("it worked");
+		}
 	}
 	
 	public JButton getButton(){
@@ -107,6 +114,21 @@ public class Button extends Grid{
 	public int NumberCheck(){
 		return number;
 	}
+	
+	/*public boolean hasWon() {
+		boolean val = true;
+		if(grid[0][1] == null) {
+			System.out.println("You are fat");
+		}
+		for(int i = 0; i<Grid.grid.length; i++) {
+			for(int j = 0; j<Grid.grid[i].length; j++) {
+				if(Grid.grid[i][j].getButton().isEnabled() && Grid.grid[i][j].MineCheck() == false) {
+					val = false;
+				}
+			}
+		}
+		return val;
+	}*/
 
 
 

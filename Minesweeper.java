@@ -96,10 +96,14 @@ public class Minesweeper{
 	 @SuppressWarnings("unused")
 	  Grid grid = new Grid(length, width, mines);
 	  
-	  
-		
+	
+	}
+
+
+
+	
     
-  }
+  
 	
 	
 	
@@ -162,6 +166,20 @@ public class Minesweeper{
    public static int getGridLength() {
 	   return length;
    }
+   /*public boolean hasWon() {
+		boolean val = true;
+		if(Grid.grid[0][1] == null) {
+			System.out.println("You are fat");
+		}
+		for(int i = 0; i<Grid.grid.length; i++) {
+			for(int j = 0; j<Grid.grid[i].length; j++) {
+				if(Grid.grid[i][j].getButton().isEnabled() && Grid.grid[i][j].MineCheck() == false) {
+					val = false;
+				}
+			}
+		}
+		return val;
+   }*/
    public static void gameRestart() {
 	   main(null);
    }
