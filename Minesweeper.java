@@ -1,16 +1,10 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
-
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
-//import sun.text.resources.cldr.ext.FormatData_en_MT;
+
 
 public class Minesweeper{
 	public static int counter = 0;
@@ -98,8 +92,7 @@ public static Timer timer;
 	  frame = new JFrame();
 	  minePanel.setBackground(new Color(27, 11, 110));
 	
-	  //frame.setExtendedState(JFrame.NORMAL); 
-	  //frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+	 
 	 
 	  frame.add(otherPanel, BorderLayout.NORTH);
 	  frame.add(minePanel, BorderLayout.CENTER);
