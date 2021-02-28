@@ -19,11 +19,14 @@ public class Button extends Grid{
 
 	private JButton button;
 	private boolean isMine;
-	public int number; 
-	//public int nonminecount = 0;
+	private int number; 
+	private int index1;
+	private int index2;
 		
-	public Button(){
+	public Button(int i, int j){
 		
+		index1 = i;
+		index2 = j;
 		button = new JButton();
 		button.setBackground(Color.GRAY);
 		button.setForeground(Color.BLUE);
@@ -51,6 +54,14 @@ public class Button extends Grid{
 	
 	public int NumberCheck(){
 		return number;
+	}
+	
+	public int getIndex1(){
+		return index1;
+	}
+	
+	public int getIndex2(){
+		return index2; 
 	}
 	
 

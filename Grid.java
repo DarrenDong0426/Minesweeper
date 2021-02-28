@@ -27,7 +27,7 @@ public class Grid extends Minesweeper{
 		
 		for (int i = 0; i < grid.length; i++){
 			for (int j = 0; j < grid[i].length; j++){
-				final Button button = new Button();
+				final Button button = new Button(i, j);
 				button.getButton().addMouseListener(new MouseAdapter(){
 					
 					public void mouseReleased(MouseEvent e) {
@@ -36,6 +36,7 @@ public class Grid extends Minesweeper{
 								if (button.MineCheck() == true){
 									mineIcon = new ImageIcon(new ImageIcon("Mine.png").getImage().getScaledInstance(button.getButton().getWidth(), button.getButton().getHeight(), Image.SCALE_DEFAULT));
 									button.getButton().setIcon(mineIcon);
+									reveal();
 									
 									int dialogButton = JOptionPane.showConfirmDialog (null, "You lost! Do you want to play again?","GAME OVER",JOptionPane.YES_NO_OPTION);
 									
@@ -47,11 +48,13 @@ public class Grid extends Minesweeper{
 										System.exit(0);
 								}
 								if (button.MineCheck() == false){
-									button.getButton().setText("" + button.NumberCheck());
+									if (button.NumberCheck() != 0)
+										button.getButton().setText("" + button.NumberCheck());
 									button.getButton().setFont(new Font("Monospace", Font.BOLD, button.getButton().getHeight()/2));
 									button.getButton().setBackground(new Color(7, 66, 115));
-									button.getButton().setEnabled(false);	
-									nonminecount++;
+									button.getButton().setEnabled(false);
+									if (button.NumberCheck() == 0)
+										checkEmpty(button.getIndex1(), button.getIndex2());
 								}
 							} 
 						}
@@ -69,8 +72,16 @@ public class Grid extends Minesweeper{
 							label.setText("Flags Remaining: " + flags);
 							}
 						}
-					if(checkWin() == true)
-						System.exit(0);
+					if(checkWin() == true){
+						int dialogButton2 = JOptionPane.showConfirmDialog (null, "You won! Do you want to play again?","GAME OVER",JOptionPane.YES_NO_OPTION);
+
+						if(dialogButton2 == JOptionPane.YES_OPTION) {
+							frame.setVisible(false);
+							gameRestart();
+						}
+						if(dialogButton2 == JOptionPane.NO_OPTION) 
+							System.exit(0);
+					}
 					}
 				});
 				grid[i][j] = button;
@@ -83,11 +94,19 @@ public class Grid extends Minesweeper{
 		setNumbers(l, w);
 	}
 		
-	public boolean checkWin() {
-		System.out.println("Work"); 
+	protected void reveal() {
 		for(int i = 0; i < grid.length; i++){
 			for(int j = 0; j < grid[i].length; j++){
-				System.out.println(grid[i][j]);
+				if(grid[i][j].MineCheck() == true)
+					grid[i][j].getButton().setIcon(mineIcon);
+			}
+		}
+		
+	}
+
+	public boolean checkWin() { 
+		for(int i = 0; i < grid.length; i++){
+			for(int j = 0; j < grid[i].length; j++){
 				if (grid[i][j].MineCheck() == false){
 					if (grid[i][j].getButton().isEnabled() == true)
 						return false;
@@ -95,8 +114,82 @@ public class Grid extends Minesweeper{
 			}
 		}
 		return true;
-		
 	} 
+	
+	public void checkEmpty(int i, int j){
+		if (isInGrid(i - 1, j) == true && grid[i-1][j].getButton().isEnabled() == true){
+			if (grid[i-1][j].NumberCheck() != 0)
+				grid[i-1][j].getButton().setText("" + grid[i-1][j].NumberCheck());
+			grid[i-1][j].getButton().setFont(new Font("Monospace", Font.BOLD, grid[i-1][j].getButton().getHeight()/2));
+			grid[i-1][j].getButton().setBackground(new Color(7, 66, 115));
+			grid[i-1][j].getButton().setEnabled(false);	
+			if (grid[i-1][j].NumberCheck() == 0)
+				checkEmpty(i-1, j);
+		}
+		if (isInGrid(i - 1, j - 1) == true && grid[i-1][j-1].getButton().isEnabled() == true){
+			if (grid[i-1][j-1].NumberCheck() != 0)
+				grid[i-1][j-1].getButton().setText("" + grid[i-1][j-1].NumberCheck());
+			grid[i-1][j-1].getButton().setFont(new Font("Monospace", Font.BOLD, grid[i-1][j-1].getButton().getHeight()/2));
+			grid[i-1][j-1].getButton().setBackground(new Color(7, 66, 115));
+			grid[i-1][j-1].getButton().setEnabled(false);	
+			if (grid[i-1][j-1].NumberCheck() == 0)
+				checkEmpty(i-1, j-1);
+		}
+		if (isInGrid(i - 1, j + 1) == true && grid[i-1][j+1].getButton().isEnabled() == true){
+			if (grid[i-1][j+1].NumberCheck() != 0)
+				grid[i-1][j+1].getButton().setText("" + grid[i-1][j+1].NumberCheck());
+			grid[i-1][j+1].getButton().setFont(new Font("Monospace", Font.BOLD, grid[i-1][j+1].getButton().getHeight()/2));
+			grid[i-1][j+1].getButton().setBackground(new Color(7, 66, 115));
+			grid[i-1][j+1].getButton().setEnabled(false);	
+			if (grid[i-1][j+1].NumberCheck() == 0)
+				checkEmpty(i-1, j+1);
+		}
+		if (isInGrid(i, j - 1) == true && grid[i][j-1].getButton().isEnabled() == true){
+			if (grid[i][j-1].NumberCheck() != 0)
+				grid[i][j-1].getButton().setText("" + grid[i][j-1].NumberCheck());
+			grid[i][j-1].getButton().setFont(new Font("Monospace", Font.BOLD, grid[i][j-1].getButton().getHeight()/2));
+			grid[i][j-1].getButton().setBackground(new Color(7, 66, 115));
+			grid[i][j-1].getButton().setEnabled(false);	
+			if (grid[i][j-1].NumberCheck() == 0)
+				checkEmpty(i, j-1);
+		}
+		if (isInGrid(i, j + 1) == true && grid[i][j+1].getButton().isEnabled() == true){
+			if (grid[i][j+1].NumberCheck() != 0)
+				grid[i][j+1].getButton().setText("" + grid[i][j+1].NumberCheck());
+			grid[i][j+1].getButton().setFont(new Font("Monospace", Font.BOLD, grid[i][j+1].getButton().getHeight()/2));
+			grid[i][j+1].getButton().setBackground(new Color(7, 66, 115));
+			grid[i][j+1].getButton().setEnabled(false);	
+			if (grid[i][j+1].NumberCheck() == 0)
+				checkEmpty(i, j+1);
+		}
+		if (isInGrid(i + 1, j) == true && grid[i+1][j].getButton().isEnabled() == true){
+			if (grid[i+1][j].NumberCheck() != 0)
+				grid[i+1][j].getButton().setText("" + grid[i+1][j].NumberCheck());
+			grid[i+1][j].getButton().setFont(new Font("Monospace", Font.BOLD, grid[i+1][j].getButton().getHeight()/2));
+			grid[i+1][j].getButton().setBackground(new Color(7, 66, 115));
+			grid[i+1][j].getButton().setEnabled(false);	
+			if (grid[i+1][j].NumberCheck() == 0)
+				checkEmpty(i+1, j);
+		}
+		if (isInGrid(i + 1, j - 1) == true && grid[i+1][j-1].getButton().isEnabled() == true){
+			if (grid[i+1][j-1].NumberCheck() != 0)
+				grid[i+1][j-1].getButton().setText("" + grid[i+1][j-1].NumberCheck());
+			grid[i+1][j-1].getButton().setFont(new Font("Monospace", Font.BOLD, grid[i+1][j-1].getButton().getHeight()/2));
+			grid[i+1][j-1].getButton().setBackground(new Color(7, 66, 115));
+			grid[i+1][j-1].getButton().setEnabled(false);
+			if (grid[i+1][j-1].NumberCheck() == 0)
+				checkEmpty(i+1, j-1);
+		}
+		if (isInGrid(i + 1, j + 1) == true && grid[i+1][j+1].getButton().isEnabled() == true){
+			if (grid[i+1][j+1].NumberCheck() != 0)
+				grid[i+1][j+1].getButton().setText("" + grid[i+1][j+1].NumberCheck());
+			grid[i+1][j+1].getButton().setFont(new Font("Monospace", Font.BOLD, grid[i+1][j+1].getButton().getHeight()/2));
+			grid[i+1][j+1].getButton().setBackground(new Color(7, 66, 115));
+			grid[i+1][j+1].getButton().setEnabled(false);
+			if (grid[i+1][j+1].NumberCheck() == 0)
+				checkEmpty(i+1, j+1);
+		}
+	}
 
 	public void SetMines(int l, int w, int m){
 		while (m > 0){
