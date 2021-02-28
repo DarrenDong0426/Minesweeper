@@ -70,7 +70,7 @@ public class Grid extends Minesweeper{
 									button.getButton().setIcon(flagIcon);
 									flags--;
 								}
-								else if(button.getButton().getIcon() == flagIcon && button.getButton().getIcon() != null){
+								else if (/*button.getButton().getIcon() == flagIcon &&*/ button.getButton().getIcon() != null){
 									button.getButton().setIcon(null);
 									flags++;
 								}
