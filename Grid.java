@@ -28,7 +28,6 @@ public class Grid extends Minesweeper{
 		for (int i = 0; i < grid.length; i++){
 			for (int j = 0; j < grid[i].length; j++){
 				final Button button = new Button(i, j);
-				//flagIcon = new ImageIcon(new ImageIcon("Flag.png").getImage().getScaledInstance(button.getButton().getWidth(), button.getButton().getHeight(), Image.SCALE_DEFAULT));
 				button.getButton().addMouseListener(new MouseAdapter(){
 					
 					public void mouseReleased(MouseEvent e) {
@@ -70,7 +69,7 @@ public class Grid extends Minesweeper{
 									button.getButton().setIcon(flagIcon);
 									flags--;
 								}
-								else if (/*button.getButton().getIcon() == flagIcon &&*/ button.getButton().getIcon() != null){
+								else if (button.getButton().getIcon() != null){
 									button.getButton().setIcon(null);
 									flags++;
 								}
@@ -91,6 +90,7 @@ public class Grid extends Minesweeper{
 						if(dialogButton2 == JOptionPane.NO_OPTION) 
 							System.exit(0);
 					}
+					label.setText("Flags Remaining: " + flags);
 					}
 				});
 				grid[i][j] = button;
@@ -127,8 +127,13 @@ public class Grid extends Minesweeper{
 	
 	public void checkEmpty(int i, int j){
 		if (isInGrid(i - 1, j) == true && grid[i-1][j].getButton().isEnabled() == true){
+			flagIcon = new ImageIcon(new ImageIcon("Flag.png").getImage().getScaledInstance(grid[i-1][j].getButton().getWidth(), grid[i-1][j].getButton().getHeight(), Image.SCALE_DEFAULT)); 
+			if (grid[i-1][j].getButton().getIcon() == flagIcon){
+				flags++;
+			}
 			if (grid[i-1][j].NumberCheck() != 0)
 				grid[i-1][j].getButton().setText("" + grid[i-1][j].NumberCheck());
+			grid[i-1][j].getButton().setIcon(null);
 			grid[i-1][j].getButton().setFont(new Font("Monospace", Font.BOLD, grid[i-1][j].getButton().getHeight()/2));
 			grid[i-1][j].getButton().setBackground(new Color(7, 66, 115));
 			grid[i-1][j].getButton().setEnabled(false);	
@@ -136,8 +141,13 @@ public class Grid extends Minesweeper{
 				checkEmpty(i-1, j);
 		}
 		if (isInGrid(i - 1, j - 1) == true && grid[i-1][j-1].getButton().isEnabled() == true){
+			flagIcon = new ImageIcon(new ImageIcon("Flag.png").getImage().getScaledInstance(grid[i-1][j-1].getButton().getWidth(), grid[i-1][j-1].getButton().getHeight(), Image.SCALE_DEFAULT)); 
+			if (grid[i-1][j-1].getButton().getIcon() == flagIcon){
+				flags++;
+			}
 			if (grid[i-1][j-1].NumberCheck() != 0)
 				grid[i-1][j-1].getButton().setText("" + grid[i-1][j-1].NumberCheck());
+			grid[i-1][j-1].getButton().setIcon(null);
 			grid[i-1][j-1].getButton().setFont(new Font("Monospace", Font.BOLD, grid[i-1][j-1].getButton().getHeight()/2));
 			grid[i-1][j-1].getButton().setBackground(new Color(7, 66, 115));
 			grid[i-1][j-1].getButton().setEnabled(false);	
@@ -145,8 +155,13 @@ public class Grid extends Minesweeper{
 				checkEmpty(i-1, j-1);
 		}
 		if (isInGrid(i - 1, j + 1) == true && grid[i-1][j+1].getButton().isEnabled() == true){
+			flagIcon = new ImageIcon(new ImageIcon("Flag.png").getImage().getScaledInstance(grid[i-1][j+1].getButton().getWidth(), grid[i-1][j+1].getButton().getHeight(), Image.SCALE_DEFAULT)); 
+			if (grid[i-1][j+1].getButton().getIcon() == flagIcon){
+				flags++;
+			}
 			if (grid[i-1][j+1].NumberCheck() != 0)
 				grid[i-1][j+1].getButton().setText("" + grid[i-1][j+1].NumberCheck());
+			grid[i-1][j+1].getButton().setIcon(null);
 			grid[i-1][j+1].getButton().setFont(new Font("Monospace", Font.BOLD, grid[i-1][j+1].getButton().getHeight()/2));
 			grid[i-1][j+1].getButton().setBackground(new Color(7, 66, 115));
 			grid[i-1][j+1].getButton().setEnabled(false);	
@@ -154,8 +169,13 @@ public class Grid extends Minesweeper{
 				checkEmpty(i-1, j+1);
 		}
 		if (isInGrid(i, j - 1) == true && grid[i][j-1].getButton().isEnabled() == true){
+			flagIcon = new ImageIcon(new ImageIcon("Flag.png").getImage().getScaledInstance(grid[i][j-1].getButton().getWidth(), grid[i][j-1].getButton().getHeight(), Image.SCALE_DEFAULT)); 
+			if (grid[i][j-1].getButton().getIcon() == flagIcon){
+				flags++;
+			}
 			if (grid[i][j-1].NumberCheck() != 0)
 				grid[i][j-1].getButton().setText("" + grid[i][j-1].NumberCheck());
+			grid[i][j-1].getButton().setIcon(null);
 			grid[i][j-1].getButton().setFont(new Font("Monospace", Font.BOLD, grid[i][j-1].getButton().getHeight()/2));
 			grid[i][j-1].getButton().setBackground(new Color(7, 66, 115));
 			grid[i][j-1].getButton().setEnabled(false);	
@@ -163,8 +183,13 @@ public class Grid extends Minesweeper{
 				checkEmpty(i, j-1);
 		}
 		if (isInGrid(i, j + 1) == true && grid[i][j+1].getButton().isEnabled() == true){
+			flagIcon = new ImageIcon(new ImageIcon("Flag.png").getImage().getScaledInstance(grid[i][j+1].getButton().getWidth(), grid[i][j+1].getButton().getHeight(), Image.SCALE_DEFAULT)); 
+			if (grid[i][j+1].getButton().getIcon() == flagIcon){
+				flags++;
+			}
 			if (grid[i][j+1].NumberCheck() != 0)
 				grid[i][j+1].getButton().setText("" + grid[i][j+1].NumberCheck());
+			grid[i][j+1].getButton().setIcon(null);
 			grid[i][j+1].getButton().setFont(new Font("Monospace", Font.BOLD, grid[i][j+1].getButton().getHeight()/2));
 			grid[i][j+1].getButton().setBackground(new Color(7, 66, 115));
 			grid[i][j+1].getButton().setEnabled(false);	
@@ -172,8 +197,13 @@ public class Grid extends Minesweeper{
 				checkEmpty(i, j+1);
 		}
 		if (isInGrid(i + 1, j) == true && grid[i+1][j].getButton().isEnabled() == true){
+			flagIcon = new ImageIcon(new ImageIcon("Flag.png").getImage().getScaledInstance(grid[i+1][j].getButton().getWidth(), grid[i+1][j].getButton().getHeight(), Image.SCALE_DEFAULT)); 
+			if (grid[i+1][j].getButton().getIcon() == flagIcon){
+				flags++;
+			}
 			if (grid[i+1][j].NumberCheck() != 0)
 				grid[i+1][j].getButton().setText("" + grid[i+1][j].NumberCheck());
+			grid[i+1][j].getButton().setIcon(null);
 			grid[i+1][j].getButton().setFont(new Font("Monospace", Font.BOLD, grid[i+1][j].getButton().getHeight()/2));
 			grid[i+1][j].getButton().setBackground(new Color(7, 66, 115));
 			grid[i+1][j].getButton().setEnabled(false);	
@@ -181,8 +211,13 @@ public class Grid extends Minesweeper{
 				checkEmpty(i+1, j);
 		}
 		if (isInGrid(i + 1, j - 1) == true && grid[i+1][j-1].getButton().isEnabled() == true){
+			flagIcon = new ImageIcon(new ImageIcon("Flag.png").getImage().getScaledInstance(grid[i+1][j-1].getButton().getWidth(), grid[i+1][j-1].getButton().getHeight(), Image.SCALE_DEFAULT)); 
+			if (grid[i+1][j-1].getButton().getIcon() == flagIcon){
+				flags++;
+			}
 			if (grid[i+1][j-1].NumberCheck() != 0)
 				grid[i+1][j-1].getButton().setText("" + grid[i+1][j-1].NumberCheck());
+			grid[i+1][j-1].getButton().setIcon(null);
 			grid[i+1][j-1].getButton().setFont(new Font("Monospace", Font.BOLD, grid[i+1][j-1].getButton().getHeight()/2));
 			grid[i+1][j-1].getButton().setBackground(new Color(7, 66, 115));
 			grid[i+1][j-1].getButton().setEnabled(false);
@@ -190,8 +225,13 @@ public class Grid extends Minesweeper{
 				checkEmpty(i+1, j-1);
 		}
 		if (isInGrid(i + 1, j + 1) == true && grid[i+1][j+1].getButton().isEnabled() == true){
+			flagIcon = new ImageIcon(new ImageIcon("Flag.png").getImage().getScaledInstance(grid[i+1][j+1].getButton().getWidth(), grid[i+1][j+1].getButton().getHeight(), Image.SCALE_DEFAULT)); 
+			if (grid[i+1][j+1].getButton().getIcon() == flagIcon){
+				flags++;
+			}
 			if (grid[i+1][j+1].NumberCheck() != 0)
 				grid[i+1][j+1].getButton().setText("" + grid[i+1][j+1].NumberCheck());
+			grid[i+1][j+1].getButton().setIcon(null);
 			grid[i+1][j+1].getButton().setFont(new Font("Monospace", Font.BOLD, grid[i+1][j+1].getButton().getHeight()/2));
 			grid[i+1][j+1].getButton().setBackground(new Color(7, 66, 115));
 			grid[i+1][j+1].getButton().setEnabled(false);

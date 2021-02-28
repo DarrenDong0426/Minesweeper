@@ -148,7 +148,7 @@ public static Timer timer;
            JOptionPane.showMessageDialog(frame, "Length must be a number between 10 and 30");
         
       }catch(NumberFormatException e){	
-        System.exit(0);
+    	  JOptionPane.showMessageDialog(frame, "Length must be a number between 10 and 30");
       }
      }while (length < 10 || length > 30);
     
