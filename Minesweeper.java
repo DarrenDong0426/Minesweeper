@@ -148,8 +148,7 @@ public static Timer timer;
            JOptionPane.showMessageDialog(frame, "Length must be a number between 10 and 30");
         
       }catch(NumberFormatException e){	
-        JOptionPane.showMessageDialog(frame, "Length must be a number between 10 and 30");
-        getLength();
+        System.exit(0);
       }
      }while (length < 10 || length > 30);
     
@@ -163,8 +162,7 @@ public static Timer timer;
         if (width < 10 || width > 30)
           JOptionPane.showMessageDialog(frame, "Width must be a number between 10 and 30");
       }catch(NumberFormatException e){	
-        JOptionPane.showMessageDialog(frame, "Width must be a number between 10 and 30");
-        getWidth();
+        System.exit(0);
       }
      }while (width < 10 || width > 30);
     
@@ -179,8 +177,7 @@ public static Timer timer;
           if (mines < 10 || mines > 30)
             JOptionPane.showMessageDialog(frame, "Number of mines must be a number between 10 and 30");
         }catch(NumberFormatException e){	
-          JOptionPane.showMessageDialog(frame, "Number of mines must be a number between 10 and 30");
-          getMines();
+          System.exit(0);
         }
        }while (mines < 10 || mines > 30);
 
