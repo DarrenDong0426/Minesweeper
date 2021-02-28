@@ -144,13 +144,13 @@ public class Minesweeper{
        try{
           mines = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter the number of mines between 10 to 30", "Number of Mines", JOptionPane.INFORMATION_MESSAGE));
           flags = mines;
-          if (mines < 2 || mines > 30)
+          if (mines < 0 || mines > 30)
             JOptionPane.showMessageDialog(frame, "Number of mines must be a number between 10 and 30");
         }catch(NumberFormatException e){	
           JOptionPane.showMessageDialog(frame, "Number of mines must be a number between 10 and 30");
           getMines();
         }
-       }while (mines < 2 || mines > 30);
+       }while (mines < 0 || mines > 30);
 
      }  
   
