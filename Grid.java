@@ -1,18 +1,18 @@
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class Grid extends Minesweeper{
+public class Grid extends Minesweeper
+					implements ActionListener{
 	
 	public int nonminecount = 0;
 	
 	public static Button[][] grid; 
-	public static boolean revealed[][];
 	
 	public Grid(){}
 	
 	public Grid(int l, int w, int m) {
 		
 		grid = new Button[l][w];
-		revealed = new boolean[l][w];
 		
 		for (int i = 0; i < grid.length; i++){
 			for (int j = 0; j < grid[i].length; j++){
@@ -84,31 +84,6 @@ public class Grid extends Minesweeper{
 		return true;
 	}
 	
-	public boolean isRevealed() {
-		boolean val = true;
-		for(int i = 0; i<revealed.length; i++) {
-			for(int j = 0; j<revealed[i].length; j++) {
-				revealed[i][j] = true;
-			}
-		}
-		
-		for(int i = 0; i<grid.length; i++) {
-			for(int j = 0; j<grid[i].length; j++) {
-				if(grid[i][j].getButton().isEnabled() == true) {
-					revealed[i][j] = false;
-				}
-			}
-		}
-		
-		for(int i = 0; i<grid.length; i++) {
-			for(int j = 0; j<grid[i].length; j++) {
-				if(revealed[i][j] == false && Grid.grid[i][j].MineCheck() == true) {
-					val = false;
-				}
-			}
-		}
-		return val;
-	}
 	
 	
 	

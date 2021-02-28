@@ -73,14 +73,14 @@ public class Minesweeper{
 	  minePanel.setBackground(new Color(27, 11, 110));
 	
 	  //frame.setExtendedState(JFrame.NORMAL); 
-	  frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+	  //frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 	 
 	  frame.add(otherPanel, BorderLayout.NORTH);
 	  frame.add(minePanel, BorderLayout.CENTER);
 	  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	  frame.setTitle("Minesweeper");
 	 
-	  //frame.pack();
+	  frame.pack();
 	  
 	  label = new JLabel();
 	  label.setText("Flags Remaining: " + flags);
