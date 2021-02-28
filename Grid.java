@@ -28,6 +28,7 @@ public class Grid extends Minesweeper{
 		for (int i = 0; i < grid.length; i++){
 			for (int j = 0; j < grid[i].length; j++){
 				final Button button = new Button(i, j);
+				//flagIcon = new ImageIcon(new ImageIcon("Flag.png").getImage().getScaledInstance(button.getButton().getWidth(), button.getButton().getHeight(), Image.SCALE_DEFAULT));
 				button.getButton().addMouseListener(new MouseAdapter(){
 					
 					public void mouseReleased(MouseEvent e) {
@@ -42,6 +43,10 @@ public class Grid extends Minesweeper{
 									
 									if(dialogButton == JOptionPane.YES_OPTION) {
 										frame.setVisible(false);
+										if(timer.isRunning()){
+											timer.stop();
+											counter = 0;
+										}
 										gameRestart();
 									}
 									if(dialogButton == JOptionPane.NO_OPTION) 
@@ -73,10 +78,14 @@ public class Grid extends Minesweeper{
 							}
 						}
 					if(checkWin() == true){
-						int dialogButton2 = JOptionPane.showConfirmDialog (null, "You won! Do you want to play again?","GAME OVER",JOptionPane.YES_NO_OPTION);
+						int dialogButton2 = JOptionPane.showConfirmDialog (null, "You won! Do you want to play again?","GAME WON",JOptionPane.YES_NO_OPTION);
 
 						if(dialogButton2 == JOptionPane.YES_OPTION) {
 							frame.setVisible(false);
+							if(timer.isRunning()){
+								timer.stop();
+								counter = 0;
+							}
 							gameRestart();
 						}
 						if(dialogButton2 == JOptionPane.NO_OPTION) 

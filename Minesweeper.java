@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,9 +21,11 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
+//import sun.text.resources.cldr.ext.FormatData_en_MT;
+
 public class Minesweeper{
-  
-  private static int length;
+	public static int counter = 0;
+	private static int length;
   private static int width;
   private static int mines;
   private static JPanel otherPanel; 
@@ -32,10 +35,12 @@ public class Minesweeper{
   public static int flags;
   private static JButton restart;
   private static ImageIcon restartIcon;
- 
-
+public static Timer timer;
+  public static JLabel time;
+  
 	public static void main(String[] args){
 		
+	
 	  getLength();	
 	  getWidth();
 	  getMines();
@@ -52,13 +57,34 @@ public class Minesweeper{
 		  
 		  public void actionPerformed(ActionEvent arg0) {
 				frame.setVisible(false);
+				
+				if(timer.isRunning()){
+					timer.stop();
+					counter = 0;
+				}
 				gameRestart();
+			
 			}
 		  
 	  }); 
 	  
-	
+	 
+	time = new JLabel();
+	 ActionListener taskPerformer = new ActionListener() {
+	      public void actionPerformed(ActionEvent evt) {
+	        counter++;
+	        time.setText("Time: " + counter);
+	        time.setFont(new Font("Monospace", Font.BOLD, 40));
+	        time.setForeground(Color.WHITE);
+	        time.setBorder(BorderFactory.createEmptyBorder(20,200,0,0));
+	      }
+	    };
+	    timer = new Timer(1000 ,taskPerformer);
+	    
+	    timer.start();
+	    
 	  
+	    
 	  otherPanel = new JPanel();
 	  otherPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
 	  otherPanel.setLayout(new GridLayout(1, 3, 0, 0));
@@ -84,18 +110,22 @@ public class Minesweeper{
 	  
 	  label = new JLabel();
 	  label.setText("Flags Remaining: " + flags);
-	  label.setFont(new Font("Monospace", Font.BOLD, 30));
+	  label.setFont(new Font("Monospace", Font.BOLD, 40));
 	  label.setForeground(Color.WHITE);
-	  label.setBorder(new EmptyBorder(0,20,0,0));
+	  label.setBorder(new EmptyBorder(20,20,0,0));
 	  otherPanel.add(label);
+	  otherPanel.add(time);
 	  otherPanel.add(restart);
-  
-	 
+	  
+	
 	  frame.setVisible(true); 
 	  
 	 @SuppressWarnings("unused")
 	  Grid grid = new Grid(length, width, mines);
 	  
+	
+	  
+	 
 	
 	}
 
@@ -109,12 +139,14 @@ public class Minesweeper{
 	
 
   public static void getLength(){
-    
+   
     do{
      try{
         length = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter the length of the grid from 10 to 30", "Length", JOptionPane.INFORMATION_MESSAGE));
+       
         if (length < 10 || length > 30)
-          JOptionPane.showMessageDialog(frame, "Length must be a number between 10 and 30");
+           JOptionPane.showMessageDialog(frame, "Length must be a number between 10 and 30");
+        
       }catch(NumberFormatException e){	
         JOptionPane.showMessageDialog(frame, "Length must be a number between 10 and 30");
         getLength();
@@ -166,20 +198,7 @@ public class Minesweeper{
    public static int getGridLength() {
 	   return length;
    }
-   /*public boolean hasWon() {
-		boolean val = true;
-		if(Grid.grid[0][1] == null) {
-			System.out.println("You are fat");
-		}
-		for(int i = 0; i<Grid.grid.length; i++) {
-			for(int j = 0; j<Grid.grid[i].length; j++) {
-				if(Grid.grid[i][j].getButton().isEnabled() && Grid.grid[i][j].MineCheck() == false) {
-					val = false;
-				}
-			}
-		}
-		return val;
-   }*/
+  
    public static void gameRestart() {
 	   main(null);
    }
